@@ -2,8 +2,10 @@
 {% set nav = 'home' %}
 {% block content %}
 <section class="hero">
-  <h1>{{ site.title }}</h1>
-  <p class="lede">{{ site.description | trim }}</p>
+  <p class="eyebrow">Professional learning · Middle &amp; high school life sciences · Virginia</p>
+  <h1>Teaching life sciences in the <em>age of AI</em>.</h1>
+  <hr class="rule">
+  <p class="lede">{{ site.description | trim }} Everything here is free to use and adapt.</p>
   <form class="search" action="/standards/" method="get" role="search" onsubmit="return jumpToSol(this)">
     <label for="sol-q" class="visually-hidden">Find by Standard of Learning</label>
     <input id="sol-q" name="q" type="search" placeholder="Find by standard, e.g. EC.5 or BIO.8" autocomplete="off" list="sol-codes">
@@ -12,50 +14,58 @@
     </datalist>
     <button class="button" type="submit">Go</button>
   </form>
+  <p class="meta">
+    <span>Organized by<b>University of Virginia</b></span>
+    {% if current %}<span>{% if current.date_obj >= today %}Next workshop{% else %}Latest workshop{% endif %}<b>{{ current.date_label }}</b></span>{% endif %}
+    <span>Prompts<b>{{ prompts | length }}</b></span>
+  </p>
 </section>
 
 {% if current %}
 <section class="current-event">
-  <div class="current-event-text">
-    <p class="eyebrow">{% if current.date_obj >= today %}Next workshop{% else %}Most recent workshop{% endif %}</p>
-    <h2><a href="/workshops/{{ current.slug }}/">{{ current.date_label }}</a></h2>
-    <p>{{ current.subtitle }}{% if current.venue %} · {{ current.venue }}{% endif %}</p>
-    <p>
-      <a class="button" href="/workshops/{{ current.slug }}/">Agenda &amp; today's materials</a>
-      {% if current.agenda_file %}<a class="button ghost" href="/{{ current.agenda_file }}">Printed agenda (PDF)</a>{% endif %}
-    </p>
-  </div>
+  <p class="eyebrow">{% if current.date_obj >= today %}Next workshop{% else %}Most recent workshop{% endif %}</p>
+  <h2><a href="/workshops/{{ current.slug }}/">{{ current.date_label }}</a></h2>
+  <p>{{ current.subtitle }}{% if current.venue %} · {{ current.venue }}{% endif %}</p>
+  <p>
+    <a class="button" href="/workshops/{{ current.slug }}/">Agenda &amp; today's materials</a>
+    {% if current.agenda_file %}<a class="button ghost" href="/{{ current.agenda_file }}">Printed agenda (PDF)</a>{% endif %}
+  </p>
 </section>
 {% endif %}
 
-<section>
-  <h2 class="section-title">Browse by topic</h2>
-  <div class="tiles">
-    {% for s in strands %}
-    <a class="tile tile-{{ s.slug }}" href="/strands/{{ s.slug }}/">
-      <h3>{{ s.name }}</h3>
-      <p>{{ s.short }}</p>
-      <p class="muted small">{{ s.count }} resource{{ '' if s.count == 1 else 's' }} · led by {{ s.lead }}</p>
-    </a>
-    {% endfor %}
+<section class="band band-full">
+  <div class="inner">
+    <p class="eyebrow">Four topics</p>
+    <h2 class="section-title">Browse by <em>topic</em></h2>
+    <div class="tiles">
+      {% for s in strands %}
+      <a class="tile tile-{{ s.slug }}" href="/strands/{{ s.slug }}/">
+        <h3>{{ s.name }}</h3>
+        <p>{{ s.short }}</p>
+        <p class="muted small">{{ s.count }} resource{{ '' if s.count == 1 else 's' }} · {{ s.lead }}</p>
+      </a>
+      {% endfor %}
+    </div>
   </div>
 </section>
 
 <section class="two-col">
   <div>
-    <h2 class="section-title">Prompt library</h2>
-    <p>Every prompt from the workshops, ready to paste into any AI chat. Each one says what it produces and which standard it supports.</p>
+    <p class="eyebrow">Paste and go</p>
+    <h2>Prompt library</h2>
+    <p class="lede">Every prompt from the workshops, ready to paste into any AI chat. Each one says what it produces and which standard it supports.</p>
     <ul class="plain-list">
       {% for r in prompts[:5] %}
       <li><a href="/resources/{{ r.slug }}/">{{ r.title }}</a> <span class="muted small">{{ r.strand_obj.name }}</span></li>
       {% endfor %}
     </ul>
-    <p><a href="/prompts/">All {{ prompts | length }} prompts →</a></p>
+    <p><a class="button ghost" href="/prompts/">All {{ prompts | length }} prompts →</a></p>
   </div>
   <div>
-    <h2 class="section-title">Find by standard</h2>
-    <p>Teaching a particular Standard of Learning next month? The crosswalk lists what we have for each standard in Life Science, Biology and Biology II, alongside the VDOE instructional guides.</p>
-    <p><a href="/standards/">Open the SOL crosswalk →</a></p>
+    <p class="eyebrow">By standard</p>
+    <h2>Find by SOL</h2>
+    <p class="lede">Teaching a particular Standard of Learning next month? The crosswalk lists what we have for each standard in Life Science, Biology and Biology II, alongside the VDOE instructional guides.</p>
+    <p><a class="button ghost" href="/standards/">Open the SOL crosswalk →</a></p>
   </div>
 </section>
 {% endblock %}

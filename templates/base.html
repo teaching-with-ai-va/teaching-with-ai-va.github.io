@@ -5,15 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}{{ site.title }}{% endblock %}</title>
 <meta name="description" content="{% block description %}{{ site.description | trim }}{% endblock %}">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#2e3141">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/style.css">
 <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 <header class="site-header">
-  <div class="wrap header-inner">
+  <div class="header-inner wrap">
     <a class="brand" href="/">
       <span class="brand-mark" aria-hidden="true"></span>
-      <span class="brand-text"><span class="brand-title">{{ site.title }}</span><span class="brand-sub">{{ site.tagline }}</span></span>
+      <span class="brand-text"><span class="brand-title">{{ site.title }}</span><span class="brand-sub">{{ site.short_tagline or 'Teacher workshops · University of Virginia' }}</span></span>
     </a>
     <nav class="site-nav" aria-label="Main">
       <a href="/"{% if nav == 'home' %} aria-current="page"{% endif %}>Home</a>
@@ -27,16 +32,28 @@
 {% block content %}{% endblock %}
 </main>
 <footer class="site-footer">
-  <div class="wrap footer-inner">
+  <div class="footer-inner wrap">
     <div>
-      <strong>{{ site.title }}</strong><br>
-      University of Virginia · with thanks to {{ site.sponsors | join(', ') }}.
+      <p class="footer-title">{{ site.title }}</p>
+      <p class="footer-tag">{{ site.tagline }}</p>
     </div>
-    <div class="footer-links">
+    <div class="footer-col">
+      <h4>Explore</h4>
+      {% for s in strands %}<a href="/strands/{{ s.slug }}/">{{ s.name }}</a>{% endfor %}
+      <a href="/prompts/">Prompt library</a>
+      <a href="/standards/">Find by standard</a>
+      <a href="/workshops/">Workshops</a>
+    </div>
+    <div class="footer-col">
+      <h4>Team</h4>
       <a href="/facilitators/">For facilitators</a>
-      <a href="https://github.com/teaching-with-ai-va/teaching-with-ai-va.github.io">Source</a>
-      <span class="muted">Built {{ built }}</span>
+      <a href="https://github.com/teaching-with-ai-va/teaching-with-ai-va.github.io">Source on GitHub ↗</a>
+      <a href="{{ standards.vdoe_url }}">Virginia SOL ↗</a>
     </div>
+  </div>
+  <div class="footer-bottom wrap">
+    <span>University of Virginia · with thanks to {{ site.sponsors | join(' · ') }}</span>
+    <span>Built {{ built }}</span>
   </div>
 </footer>
 {% block scripts %}{% endblock %}

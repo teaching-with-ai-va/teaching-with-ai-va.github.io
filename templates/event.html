@@ -14,9 +14,11 @@
   </p>
 </section>
 
-<section class="rotations">
-  <h2 class="section-title">Afternoon workshops &amp; materials</h2>
-  <p>Each participant attends two rotations; the materials for all four are here for everyone.</p>
+<section class="rotations band band-full">
+  <div class="inner">
+  <p class="eyebrow">Afternoon</p>
+  <h2 class="section-title">Workshops &amp; <em>materials</em></h2>
+  <p class="lede">Each participant attends two rotations; the materials for all four are here for everyone.</p>
   <div class="rotation-grid">
     {% for rot in ev.rotations %}
     <article class="rotation rotation-{{ rot.strand }}">
@@ -36,6 +38,7 @@
       <p class="small"><a href="/strands/{{ rot.strand }}/">All {{ rot.strand_obj.name }} resources →</a></p>
     </article>
     {% endfor %}
+  </div>
   </div>
 </section>
 
