@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Teaching Life Sciences in the Age of AI resource hub.
+"""Build the Teaching in the Age of AI resource hub.
 
 Inputs (all plain text, all in this repository):
   site.yaml            site-wide settings and the list of strands

@@ -1,8 +1,9 @@
-# Teaching Life Sciences in the Age of AI — resource hub
+# Teaching in the Age of AI — resource hub
 
 The website behind **bit.ly/BIORESOURCES**: prompts, worksheets, lesson plans and guides from the
-*Teaching Life Sciences in the Age of AI* teacher workshops (University of Virginia), organized by
-topic and by Virginia Standard of Learning.
+*Teaching in the Age of AI* teacher workshop series (University of Virginia), organized by topic and
+by Virginia Standard of Learning. Each workshop has its own subject title; the first was
+*Teaching Life Sciences in the Age of AI* (October 24, 2026).
 
 Live site: https://teaching-with-ai-va.github.io
 

@@ -3,8 +3,9 @@
 {% block title %}Workshops · {{ site.title }}{% endblock %}
 {% block content %}
 <section class="page-head">
+  <p class="eyebrow">{{ site.title }}</p>
   <h1>Workshops</h1>
-  <p class="lede">Every workshop in the series, newest first. Each page has the agenda, speakers, and the materials used in each rotation.</p>
+  <p class="lede">Every workshop in the {{ site.title }} series, newest first. Each page has the agenda, speakers, and the materials used in each rotation.</p>
 </section>
 <div class="cards">
   {% for ev in events %}

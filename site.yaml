@@ -1,12 +1,16 @@
 # Site-wide settings. Edit freely; the build reads this on every run.
 
-title: Teaching Life Sciences in the Age of AI
-short_title: Teaching with AI · VA
-tagline: Professional learning for middle and high school life-science teachers in Virginia
+# The series is "Teaching in the Age of AI"; each workshop has its own subject-specific title
+# (e.g. "Teaching Life Sciences in the Age of AI"), set in its events/ file.
+title: Teaching in the Age of AI
+short_title: Teaching in the Age of AI
+short_tagline: Teacher workshops · University of Virginia
+tagline: Professional learning for Virginia's middle and high school teachers
 url: https://teaching-with-ai-va.github.io
 description: >
-  Prompts, worksheets, lesson plans and guides from the Teaching Life Sciences in the Age of AI
-  workshop series, organized by topic and by Virginia Standard of Learning.
+  Prompts, worksheets, lesson plans and guides from the Teaching in the Age of AI workshop series
+  at the University of Virginia, organized by topic and by Virginia Standard of Learning.
+  The series opened with Teaching Life Sciences in the Age of AI.
 
 # Short links printed on agendas. BIORESOURCES never changes; AIAFTERNOON is
 # re-pointed at the current workshop page each semester.

@@ -2,8 +2,8 @@
 {% set nav = 'home' %}
 {% block content %}
 <section class="hero">
-  <p class="eyebrow">Professional learning · Middle &amp; high school life sciences · Virginia</p>
-  <h1>Teaching life sciences in the <em>age of AI</em>.</h1>
+  <p class="eyebrow">A workshop series · Middle &amp; high school teachers · Virginia</p>
+  <h1>Teaching in the <em>age of AI</em>.</h1>
   <hr class="rule">
   <p class="lede">{{ site.description | trim }} Everything here is free to use and adapt.</p>
   <form class="search" action="/standards/" method="get" role="search" onsubmit="return jumpToSol(this)">
@@ -23,8 +23,8 @@
 
 {% if current %}
 <section class="current-event">
-  <p class="eyebrow">{% if current.date_obj >= today %}Next workshop{% else %}Most recent workshop{% endif %}</p>
-  <h2><a href="/workshops/{{ current.slug }}/">{{ current.date_label }}</a></h2>
+  <p class="eyebrow">{% if current.date_obj >= today %}Next workshop{% else %}Most recent workshop{% endif %} · {{ current.date_label }}</p>
+  <h2><a href="/workshops/{{ current.slug }}/">{{ current.title }}</a></h2>
   <p>{{ current.subtitle }}{% if current.venue %} · {{ current.venue }}{% endif %}</p>
   <p>
     <a class="button" href="/workshops/{{ current.slug }}/">Agenda &amp; today's materials</a>

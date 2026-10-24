@@ -4,7 +4,7 @@
 {% block content %}
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/workshops/">Workshops</a> › {{ ev.date_label }}</nav>
 <section class="page-head">
-  <p class="eyebrow">Workshop</p>
+  <p class="eyebrow">{{ site.title }} · Workshop</p>
   <h1>{{ ev.title }}</h1>
   <p class="lede">{{ ev.subtitle }}</p>
   <p><strong>{{ ev.date_obj.strftime('%A, %B %-d, %Y') }}</strong>{% if ev.time %} · {{ ev.time }}{% endif %}{% if ev.venue %}<br>{{ ev.venue }}{% endif %}</p>
