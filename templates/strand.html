@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ strand.name }} · {{ site.title }}{% endblock %}
+{% block content %}
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › {{ strand.name }}</nav>
+<section class="page-head strand-head-{{ strand.slug }}">
+  <p class="eyebrow">Topic · led by {{ strand.lead }}</p>
+  <h1>{{ strand.name }}</h1>
+  <p class="lede">{{ strand.summary | trim }}</p>
+</section>
+
+{% if strand.count == 0 %}
+<section class="empty">
+  <p>Materials for this topic are on their way. In the meantime, see the <a href="/workshops/">workshop pages</a> for the session description.</p>
+</section>
+{% else %}
+
+{% if strand.start_here %}
+<section>
+  <h2 class="section-title">Start here</h2>
+  <div class="cards">
+    {% for r in strand.start_here %}{% include '_card.html' %}{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% for label, items in strand.groups %}
+<section>
+  <h2 class="section-title">{{ label }}{{ 's' if items | length > 1 and not label.endswith('s') else '' }}</h2>
+  <div class="cards">
+    {% for r in items %}{% include '_card.html' %}{% endfor %}
+  </div>
+</section>
+{% endfor %}
+{% endif %}
+
+{% if strand.events %}
+<section>
+  <h2 class="section-title">Offered at</h2>
+  <ul class="plain-list">
+    {% for ev in strand.events %}<li><a href="/workshops/{{ ev.slug }}/">{{ ev.date_label }}</a></li>{% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endblock %}

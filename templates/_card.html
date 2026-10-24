@@ -1,0 +1,19 @@
+{# A resource card. Usage: {% include '_card.html' with context %} after setting `r`. #}
+<article class="card">
+  <div class="card-meta">
+    <span class="pill pill-{{ r.type }}">{{ r.type_label }}</span>
+    {% if r.grade_label %}<span class="muted">{{ r.grade_label }}</span>{% endif %}
+  </div>
+  <h3 class="card-title"><a href="/resources/{{ r.slug }}/">{{ r.title }}</a></h3>
+  {% if r.summary %}<p class="card-summary">{{ r.summary | trim }}</p>{% endif %}
+  <div class="card-foot">
+    {% if r.type == 'prompt' %}
+      <a class="button small" href="/resources/{{ r.slug }}/">Open prompt</a>
+    {% elif r.href %}
+      <a class="button small" href="{{ r.href }}" target="_blank" rel="noopener" title="{{ r.access_hint }}">{{ r.access_label }} ↗</a>
+    {% endif %}
+    {% if r.sol %}
+      <span class="sol-list">{% for s in r.sol %}<a class="sol" href="/standards/#{{ s }}">{{ s }}</a>{% endfor %}</span>
+    {% endif %}
+  </div>
+</article>

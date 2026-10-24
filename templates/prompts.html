@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% set nav = 'prompts' %}
+{% block title %}Prompt library · {{ site.title }}{% endblock %}
+{% block content %}
+<section class="page-head">
+  <h1>Prompt library</h1>
+  <p class="lede">Every prompt from the workshops. Each one is a single paste into a fresh AI chat; the card says what comes back and which standard it supports.</p>
+</section>
+
+<div class="filters" role="group" aria-label="Filter prompts">
+  <button class="chip is-active" data-filter="all" type="button">All ({{ prompts | length }})</button>
+  {% for s in strands %}{% set n = prompts | selectattr('strand', 'equalto', s.slug) | list | length %}{% if n %}
+  <button class="chip" data-filter="{{ s.slug }}" type="button">{{ s.name }} ({{ n }})</button>
+  {% endif %}{% endfor %}
+</div>
+
+<div class="prompt-list">
+{% for r in prompts %}
+<article class="prompt-entry" data-strand="{{ r.strand }}" id="{{ r.slug }}">
+  <div class="prompt-entry-head">
+    <div>
+      <p class="eyebrow">{{ r.strand_obj.name }}{% if r.grade_label %} · {{ r.grade_label }}{% endif %}</p>
+      <h2><a href="/resources/{{ r.slug }}/">{{ r.title }}</a></h2>
+      {% if r.summary %}<p>{{ r.summary | trim }}</p>{% endif %}
+    </div>
+    <button class="button small" type="button" data-copy="p-{{ loop.index }}">Copy prompt</button>
+  </div>
+  <details>
+    <summary>Show the prompt</summary>
+    <pre id="p-{{ loop.index }}" class="prompt-text">{{ r.prompt_text | trim }}</pre>
+  </details>
+  {% if r.sol %}<p class="sol-list">{% for s in r.sol %}<a class="sol" href="/standards/#{{ s }}">{{ s }}</a>{% endfor %}</p>{% endif %}
+</article>
+{% endfor %}
+</div>
+
+{% set libs = [] %}
+{% for r in catalog if r.type == 'guide' and 'prompt-library' in r.slug and r.audience != 'facilitator' %}{% set _ = libs.append(r) %}{% endfor %}
+{% if libs %}
+<section>
+  <h2 class="section-title">See also</h2>
+  <div class="cards">{% for r in libs %}{% include '_card.html' %}{% endfor %}</div>
+</section>
+{% endif %}
+{% endblock %}
+{% block scripts %}
+<script>
+document.querySelectorAll('[data-copy]').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var el = document.getElementById(btn.getAttribute('data-copy'));
+    navigator.clipboard.writeText(el.innerText).then(function(){
+      var old = btn.textContent; btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = old; }, 1500);
+    });
+  });
+});
+document.querySelectorAll('.chip').forEach(function(chip){
+  chip.addEventListener('click', function(){
+    document.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('is-active'); });
+    chip.classList.add('is-active');
+    var f = chip.getAttribute('data-filter');
+    document.querySelectorAll('.prompt-entry').forEach(function(p){
+      p.hidden = (f !== 'all' && p.getAttribute('data-strand') !== f);
+    });
+  });
+});
+</script>
+{% endblock %}

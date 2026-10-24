@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% set nav = 'standards' %}
+{% block title %}Find by Standard of Learning · {{ site.title }}{% endblock %}
+{% block content %}
+<section class="page-head">
+  <h1>Find by Standard of Learning</h1>
+  <p class="lede">What we have for each Virginia SOL we touch, course by course. Only standards with at least one resource are listed. The official standards and instructional guides are on the <a href="{{ standards.vdoe_url }}">VDOE site</a>.</p>
+  <p class="course-jump">
+    {% for group in crosswalk %}<a class="chip" href="#{{ group.course.prefix }}">{{ group.course.name }}</a>{% endfor %}
+  </p>
+</section>
+
+{% for group in crosswalk %}
+<section class="course" id="{{ group.course.prefix }}">
+  <h2 class="section-title">{{ group.course.name }} <span class="muted small">({{ group.course.prefix }} · {{ 'middle school' if group.course.grade_band == 'MS' else 'high school' }})</span></h2>
+  <p class="small">
+    {% if group.course.guide_file %}<a href="/{{ group.course.guide_file }}">VDOE instructional guide (Word) ↓</a> · {% endif %}
+    <a href="{{ standards.vdoe_url }}">All VDOE standards ↗</a>
+  </p>
+  {% if group.rows %}
+  <table class="crosswalk">
+    <thead><tr><th>Standard</th><th>Our resources</th></tr></thead>
+    <tbody>
+    {% for row in group.rows %}
+    <tr id="{{ row.code }}">
+      <td class="code-cell"><strong>{{ row.code }}</strong>{% if row.text %}<br><span class="small">{{ row.text }}</span>{% endif %}</td>
+      <td>
+        <ul class="plain-list">
+        {% for r in row.resources %}
+          <li><span class="pill pill-{{ r.type }}">{{ r.type_label }}</span> <a href="/resources/{{ r.slug }}/">{{ r.title }}</a></li>
+        {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="muted">Nothing tagged for this course yet.</p>
+  {% endif %}
+</section>
+{% endfor %}
+{% endblock %}
+{% block scripts %}
+<script>
+// Highlight the row named in the URL hash (e.g. /standards/#EC.5) and tell the visitor if it is missing.
+(function(){
+  var h = decodeURIComponent(location.hash.slice(1)).toUpperCase();
+  if (!h) return;
+  var el = document.getElementById(h);
+  if (el) { el.classList.add('is-target'); el.scrollIntoView(); }
+  else if (/^[A-Z]+\.\d+$/.test(h)) {
+    var p = document.createElement('p'); p.className = 'notice';
+    p.textContent = 'We do not have anything tagged ' + h + ' yet. Browse the courses below, or tell a facilitator what you would like to see.';
+    document.querySelector('.page-head').appendChild(p);
+  }
+})();
+</script>
+{% endblock %}

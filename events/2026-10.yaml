@@ -1,0 +1,131 @@
+# Workshop: Saturday, October 24, 2026. One file per workshop, named yyyy-mm.yaml.
+# Rotations name catalog slugs; the build refuses to publish if a slug does not exist.
+
+date: 2026-10-24
+title: Teaching Life Sciences in the Age of AI
+subtitle: Professional Learning for Middle & High School Teachers in the Life Sciences
+time: 10:00 a.m. – 3:30 p.m.
+venue: UVA Student Health and Wellness, 550 Brandon Avenue, Charlottesville
+agenda_file: files/agenda-2026-10.pdf
+evaluation_url:            # add the evaluation survey link here
+short_link: https://bit.ly/AIAFTERNOON
+
+speakers:
+  - name: Barry Condron
+    affiliation: Professor, Biology
+  - name: Christopher Deppmann
+    affiliation: Professor, Biology
+  - name: Natasha Heny
+    affiliation: Professor, Teacher Education
+  - name: Jennifer Maeng
+    affiliation: Associate Professor, Education Research
+  - name: Matthew Pryal
+    affiliation: Assistant Professor, Astronomy
+  - name: Paul Torrey
+    affiliation: Assistant Professor, Astronomy; CosmicAI Institute Astro Lead
+
+morning:
+  heading: "Part 1 · Morning — AI in Biology: Research & Practice"
+  items:
+    - time: 10:00–10:15
+      title: Welcome & Setting the Stage
+      who: Lisa Woolfork, Natasha Heny
+    - time: 10:15–10:35
+      title: "Crowdsourcing: AI in Our Practice"
+      who: Natasha Heny
+      description: >
+        Share a way you are using AI, a concern you have about AI in your practice, and how you
+        see AI impacting life science research and careers.
+    - time: 10:40–11:10
+      title: "Fast Tools, Slow Thinking: Raising the Ceiling on What We Teach"
+      who: Christopher Deppmann
+      description: >
+        AI now lets one teacher build in weeks what used to take a publisher years, and lets us see
+        how every student is reasoning before they walk into class. I'll show what that looks like
+        in practice, including the student who talks a good game but never did the reading, and why
+        the real job is protecting the slow thinking these tools make it easy to skip.
+    - time: 11:10–11:20
+      title: Break
+      kind: break
+    - time: 11:20–11:50
+      title: "AI in Biology: a Curse and a Gift"
+      who: Barry Condron
+      description: >
+        In this talk, we explore how AI is revolutionizing neuroscience by helping researchers
+        better understand brain circuits and behavior. We also examine the potential risks of relying
+        on AI, particularly its implications for learning, critical thinking, and cognitive health.
+    - time: 11:50–12:20
+      title: Q&A with Barry Condron & Christopher Deppmann
+      who: Matt Pryal
+      description: >
+        What surprised you about how AI is used in research and teaching? What skills will students
+        need for science careers shaped by AI? Where should humans stay "in the loop"? What does this
+        mean for middle and high school classrooms?
+    - time: 12:20–12:35
+      title: Introducing the Afternoon Workshops
+      who: Matt Pryal
+      description: >
+        A preview of the four interactive workshops. Rank your interest; we will post the afternoon
+        schedule during lunch — each person will attend two. Resources for all workshops are
+        available to everyone.
+    - time: 12:35–1:20
+      title: Lunch
+      kind: break
+      description: Workshops begin at 1:25 — check the workshop assignments for room numbers.
+
+afternoon:
+  heading: "Part 2 · Afternoon — Bringing AI into Your Classroom"
+  items:
+    - time: 1:25–2:10
+      title: Workshop Rotation 1
+    - time: 2:15–3:00
+      title: Workshop Rotation 2
+    - time: 3:05–3:25
+      title: Sharing & Takeaways
+      description: >
+        Return to the main room. What did you create? What will you try with your students?
+        What are your biggest takeaways from today?
+    - time: 3:25–3:30
+      title: Feedback & Closing
+
+rotations:
+  - strand: assessment-security
+    title: "Ensuring Learning in the Age of AI: Designing More Secure Assessments"
+    leader: Matthew Pryal
+    room: 100 A
+    description: >
+      Exploring strategies to support genuine learning via assessments, while minimizing
+      additional burden on instructors.
+    resources: [assessment-security-slides, assessment-security-worksheet, assessment-security-resource-guide, improving-assessment-age-of-ai, brief-oral-verification, version-history-for-assessment-security, lms-and-file-metadata]
+  - strand: differentiation
+    title: Using AI to Differentiate Science Activities
+    leader: Natasha Heny
+    room: Conference Room 208
+    description: Using AI to support differentiation, including vocabulary development and writing scaffolds.
+    resources: [differentiation-participant-worksheet, differentiation-prompt-library, demo-1-vocabulary, demo-2a-writing-support]
+  - strand: data-visualization
+    title: Creating and Interpreting Data Visualizations
+    leader: Paul Torrey
+    room: 101B
+    description: Using AI to support instruction on creating and interpreting graphs, plots, and data.
+    resources: [data-and-visualizations-life-sciences, deer-population-simulator, build-a-prompt-from-the-standard, hemophilia-pedigree-cleanup, keeling-curve-cleanup, chi-square-worksheet]
+  - strand: planning-investigations
+    title: AI for Planning Scientific Investigations
+    leader: Jennifer Maeng
+    room: Conference Room 317
+    description: Using AI for instructional planning of scientific investigations.
+    resources: []
+
+sponsors:
+  - Arthur Vining Davis Foundations
+  - U.S. National Science Foundation
+  - UVA Center for Liberal Arts
+
+# Facilitator-only section (shown on the facilitator pages, not the public event page)
+facilitator:
+  run_of_show:
+  evaluation_results:
+  takeaways:
+  notes: >
+    First workshop in the series. Add links to the evaluation results and the Sharing & Takeaways
+    notes here after the event.

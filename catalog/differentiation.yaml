@@ -1,0 +1,53 @@
+# Differentiation strand — led by Natasha Heny.
+
+- slug: differentiation-participant-worksheet
+  title: Participant Worksheet — Using AI to Differentiate Science Activities
+  type: worksheet
+  strand: differentiation
+  url: https://docs.google.com/document/d/1mxPysJC29X7FSSdTYjllL-O8uD7rIzC0/copy
+  access: make-a-copy
+  summary: The worksheet used during the workshop rotation. Click to make your own copy in Google Drive.
+  grade_band: both
+  author: Natasha Heny
+  updated: 2026-10-24
+  start_here: true
+  related: [differentiation-prompt-library]
+
+- slug: differentiation-prompt-library
+  title: Prompt Library — Differentiation
+  type: guide
+  strand: differentiation
+  url: https://docs.google.com/document/d/1ob3XcAyp4dVO03DuVWTuVg2SEF9iIV6h/edit?usp=sharing&ouid=111141322123870047014&rtpof=true&sd=true
+  access: view
+  summary: >
+    A library of prompts for differentiating science activities: vocabulary development,
+    writing scaffolds, reading-level adjustments and more.
+  grade_band: both
+  author: Natasha Heny
+  updated: 2026-10-24
+  start_here: true
+  related: [differentiation-participant-worksheet, demo-1-vocabulary, demo-2a-writing-support]
+
+- slug: demo-1-vocabulary
+  title: Demo 1a, 1b, 1c — Vocabulary
+  type: demo
+  strand: differentiation
+  url: https://drive.google.com/file/d/12e_q-iKguYcy_d4R1MoZkob9WcYYT13L/view?usp=sharing
+  access: view
+  summary: Three worked demonstrations of using AI to build vocabulary supports for a science activity.
+  grade_band: both
+  author: Natasha Heny
+  updated: 2026-10-24
+  related: [differentiation-prompt-library]
+
+- slug: demo-2a-writing-support
+  title: Demo 2a — Writing Support
+  type: demo
+  strand: differentiation
+  url: https://drive.google.com/file/d/15Cit46TLebt-I7oCgUwGaNTR9WwCCWn0/view?usp=sharing
+  access: view
+  summary: A worked demonstration of using AI to scaffold student writing in science.
+  grade_band: both
+  author: Natasha Heny
+  updated: 2026-10-24
+  related: [differentiation-prompt-library]

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}For facilitators · {{ site.title }}{% endblock %}
+{% block content %}
+<section class="page-head">
+  <p class="eyebrow">For facilitators</p>
+  <h1>Running the workshops</h1>
+  <p class="lede">Everything the organizing team needs: slides and run-of-show per rotation, how to add a resource or a new workshop, and the changelog.</p>
+</section>
+
+{% if current %}
+<section>
+  <h2 class="section-title">{% if current.date_obj >= today %}Next{% else %}Most recent{% endif %} workshop: {{ current.date_label }}</h2>
+  <dl class="facts">
+    <dt>Public page</dt><dd><a href="/workshops/{{ current.slug }}/">/workshops/{{ current.slug }}/</a> · short link <a href="{{ current.short_link or site.short_links.current_event }}">{{ current.short_link or site.short_links.current_event }}</a></dd>
+    {% if current.facilitator %}
+    {% if current.facilitator.run_of_show %}<dt>Run of show</dt><dd><a href="{{ current.facilitator.run_of_show }}">Open</a></dd>{% endif %}
+    {% if current.facilitator.evaluation_results %}<dt>Evaluation results</dt><dd><a href="{{ current.facilitator.evaluation_results }}">Open</a></dd>{% endif %}
+    {% if current.facilitator.takeaways %}<dt>Takeaways notes</dt><dd><a href="{{ current.facilitator.takeaways }}">Open</a></dd>{% endif %}
+    {% if current.facilitator.notes %}<dt>Notes</dt><dd>{{ current.facilitator.notes | trim }}</dd>{% endif %}
+    {% endif %}
+  </dl>
+</section>
+{% endif %}
+
+<section>
+  <h2 class="section-title">Rotations</h2>
+  <div class="tiles">
+    {% for s in strands %}
+    <a class="tile tile-{{ s.slug }}" href="/facilitators/{{ s.slug }}/">
+      <h3>{{ s.name }}</h3>
+      <p class="small">{{ s.lead }} · {{ s.facilitator_items | length }} facilitator item{{ '' if s.facilitator_items | length == 1 else 's' }}, {{ s.count }} public</p>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="two-col">
+  <div>
+    <h2 class="section-title">Adding content</h2>
+    <p>One YAML row per resource, one file per workshop. The build refuses to publish anything that references a missing slug or a bad link.</p>
+    <p><a href="/facilitators/how-to/">Read the how-to →</a></p>
+  </div>
+  <div>
+    <h2 class="section-title">Changelog</h2>
+    <p>What was added or changed, newest first.</p>
+    <p><a href="/facilitators/changelog/">Open the changelog →</a></p>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Short links</h2>
+  <dl class="facts">
+    <dt>{{ site.short_links.home }}</dt><dd>→ site home. Printed on every agenda; never re-point it.</dd>
+    <dt>{{ site.short_links.current_event }}</dt><dd>→ the current workshop page. Re-point it each semester.</dd>
+  </dl>
+</section>
+{% endblock %}

@@ -1,0 +1,64 @@
+# Site-wide settings. Edit freely; the build reads this on every run.
+
+title: Teaching Life Sciences in the Age of AI
+short_title: Teaching with AI · VA
+tagline: Professional learning for middle and high school life-science teachers in Virginia
+url: https://teaching-with-ai-va.github.io
+description: >
+  Prompts, worksheets, lesson plans and guides from the Teaching Life Sciences in the Age of AI
+  workshop series, organized by topic and by Virginia Standard of Learning.
+
+# Short links printed on agendas. BIORESOURCES never changes; AIAFTERNOON is
+# re-pointed at the current workshop page each semester.
+short_links:
+  home: https://bit.ly/BIORESOURCES
+  current_event: https://bit.ly/AIAFTERNOON
+
+organizers:
+  - name: Paul Torrey
+    affiliation: Assistant Professor, Astronomy; CosmicAI Institute Astro Lead, University of Virginia
+  - name: Matthew Pryal
+    affiliation: Assistant Professor, Astronomy, University of Virginia
+  - name: Natasha Heny
+    affiliation: Professor, Teacher Education, University of Virginia
+  - name: Jennifer Maeng
+    affiliation: Associate Professor, Education Research, University of Virginia
+
+sponsors:
+  - Arthur Vining Davis Foundations
+  - U.S. National Science Foundation
+  - UVA Center for Liberal Arts
+  - CosmicAI (NSF–Simons AI Institute for Cosmic Origins)
+
+# The four afternoon workshop themes. Catalog cards reference these by slug.
+# To add a strand, add an entry here and (optionally) a catalog/<slug>.yaml file.
+strands:
+  - slug: assessment-security
+    name: Assessment Security
+    short: Designing more secure assessments
+    lead: Matthew Pryal
+    summary: >
+      Strategies to support genuine learning via assessments while minimizing additional burden
+      on instructors: better assessment design, clearer instructions, stronger evidence of learning,
+      and appropriate AI boundaries.
+  - slug: differentiation
+    name: Differentiation
+    short: Using AI to differentiate science activities
+    lead: Natasha Heny
+    summary: >
+      Using AI to support differentiation in science classrooms, including vocabulary development
+      and writing scaffolds, with a participant worksheet and a prompt library to take home.
+  - slug: data-visualization
+    name: Data Visualization
+    short: Creating and interpreting data visualizations
+    lead: Paul Torrey
+    summary: >
+      Using AI to support instruction on creating and interpreting graphs, plots and data:
+      build an interactive simulator from one prompt, clean up a confusing textbook figure,
+      and generate interpretation practice with an answer key.
+  - slug: planning-investigations
+    name: Planning Investigations
+    short: AI for planning scientific investigations
+    lead: Jennifer Maeng
+    summary: >
+      Using AI for instructional planning of scientific investigations.

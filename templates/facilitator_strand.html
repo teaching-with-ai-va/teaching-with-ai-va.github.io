@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}{{ strand.name }} (facilitators) · {{ site.title }}{% endblock %}
+{% block content %}
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/facilitators/">For facilitators</a> › {{ strand.name }}</nav>
+<section class="page-head strand-head-{{ strand.slug }}">
+  <p class="eyebrow">Rotation · led by {{ strand.lead }}</p>
+  <h1>{{ strand.name }}</h1>
+  <p class="lede">{{ strand.summary | trim }}</p>
+  <p><a href="/strands/{{ strand.slug }}/">Public topic page →</a></p>
+</section>
+
+<section>
+  <h2 class="section-title">Facilitator materials</h2>
+  {% if strand.facilitator_items %}
+  <div class="cards">{% for r in strand.facilitator_items %}{% include '_card.html' %}{% endfor %}</div>
+  {% else %}
+  <p class="muted">No facilitator-only items yet. Mark a catalog card <code>audience: facilitator</code> (or <code>both</code>) to list it here.</p>
+  {% endif %}
+</section>
+
+<section>
+  <h2 class="section-title">Offered at</h2>
+  {% if strand.events %}
+  <ul class="plain-list">
+    {% for ev in strand.events %}
+    {% for rot in ev.rotations if rot.strand == strand.slug %}
+    <li><a href="/workshops/{{ ev.slug }}/">{{ ev.date_label }}</a> — {{ rot.title }}{% if rot.room %}, room {{ rot.room }}{% endif %} · {{ rot.resource_objs | length }} resource{{ '' if rot.resource_objs | length == 1 else 's' }}</li>
+    {% endfor %}
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="muted">Not yet scheduled.</p>
+  {% endif %}
+</section>
+
+<section>
+  <h2 class="section-title">All catalog rows for this topic</h2>
+  <table class="crosswalk">
+    <thead><tr><th>Slug</th><th>Type</th><th>Audience</th><th>SOL</th><th>Updated</th></tr></thead>
+    <tbody>
+    {% for r in catalog if r.strand == strand.slug %}
+    <tr><td><code>{{ r.slug }}</code></td><td>{{ r.type_label }}</td><td>{{ r.audience }}</td><td>{{ r.sol | join(', ') }}</td><td>{{ r.updated or '' }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}{{ r.title }} · {{ site.title }}{% endblock %}
+{% block description %}{{ (r.summary or site.description) | trim }}{% endblock %}
+{% block content %}
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/strands/{{ r.strand_obj.slug }}/">{{ r.strand_obj.name }}</a> › {{ r.title }}</nav>
+<article class="resource">
+  <div class="card-meta">
+    <span class="pill pill-{{ r.type }}">{{ r.type_label }}</span>
+    {% if r.grade_label %}<span class="muted">{{ r.grade_label }}</span>{% endif %}
+  </div>
+  <h1>{{ r.title }}</h1>
+  {% if r.summary %}<p class="lede">{{ r.summary | trim }}</p>{% endif %}
+
+  {% if r.type == 'prompt' %}
+  <section class="prompt-box">
+    <div class="prompt-head">
+      <h2>The prompt</h2>
+      <button class="button small" type="button" data-copy="prompt-text">Copy prompt</button>
+    </div>
+    <pre id="prompt-text" class="prompt-text">{{ r.prompt_text | trim }}</pre>
+    <p class="muted small">Paste into a fresh chat in any AI assistant (Claude, ChatGPT, Gemini, Copilot).{% if r.tips %} {{ r.tips | trim }}{% endif %}</p>
+  </section>
+  {% else %}
+  <p class="actions">
+    {% if r.url %}<a class="button" href="{{ r.url }}" target="_blank" rel="noopener">{{ r.access_label }} ↗</a>{% endif %}
+    {% if r.file %}<a class="button ghost" href="/{{ r.file }}">Download PDF</a>{% endif %}
+    <span class="muted small">{{ r.access_hint }}</span>
+  </p>
+  {% if r.tips %}<p>{{ r.tips | trim }}</p>{% endif %}
+  {% endif %}
+
+  <dl class="facts">
+    <dt>Topic</dt><dd><a href="/strands/{{ r.strand_obj.slug }}/">{{ r.strand_obj.name }}</a></dd>
+    {% if r.author %}<dt>Author</dt><dd>{{ r.author }}</dd>{% endif %}
+    {% if r.updated %}<dt>Updated</dt><dd>{{ r.updated }}</dd>{% endif %}
+    {% if r.sol_objs %}
+    <dt>Standards</dt>
+    <dd>
+      <ul class="plain-list">
+      {% for s in r.sol_objs %}
+        <li><a class="sol" href="/standards/#{{ s.code }}">{{ s.code }}</a> <span class="muted small">{{ s.course.name }}</span>{% if s.text %}<br><span class="small">{{ s.text }}</span>{% endif %}</li>
+      {% endfor %}
+      </ul>
+    </dd>
+    {% endif %}
+    {% if r.used_in %}
+    <dt>Used in</dt>
+    <dd>{% for ev in r.used_in %}<a href="/workshops/{{ ev.slug }}/">{{ ev.date_label }}</a>{{ ', ' if not loop.last }}{% endfor %}</dd>
+    {% endif %}
+  </dl>
+
+  {% if r.related_objs %}
+  <section>
+    <h2 class="section-title">Pairs with</h2>
+    <div class="cards">
+      {% for r in r.related_objs %}{% include '_card.html' %}{% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</article>
+{% endblock %}
+{% block scripts %}
+{% if r.type == 'prompt' %}
+<script>
+document.querySelectorAll('[data-copy]').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var el = document.getElementById(btn.getAttribute('data-copy'));
+    navigator.clipboard.writeText(el.innerText).then(function(){
+      var old = btn.textContent; btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = old; }, 1500);
+    });
+  });
+});
+</script>
+{% endif %}
+{% endblock %}

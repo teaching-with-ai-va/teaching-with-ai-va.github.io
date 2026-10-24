@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% set nav = 'workshops' %}
+{% block title %}{{ ev.date_label }} · {{ site.title }}{% endblock %}
+{% block content %}
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/workshops/">Workshops</a> › {{ ev.date_label }}</nav>
+<section class="page-head">
+  <p class="eyebrow">Workshop</p>
+  <h1>{{ ev.title }}</h1>
+  <p class="lede">{{ ev.subtitle }}</p>
+  <p><strong>{{ ev.date_obj.strftime('%A, %B %-d, %Y') }}</strong>{% if ev.time %} · {{ ev.time }}{% endif %}{% if ev.venue %}<br>{{ ev.venue }}{% endif %}</p>
+  <p>
+    {% if ev.agenda_file %}<a class="button ghost" href="/{{ ev.agenda_file }}">Printed agenda (PDF)</a>{% endif %}
+    {% if ev.evaluation_url %}<a class="button" href="{{ ev.evaluation_url }}">Evaluation survey</a>{% endif %}
+  </p>
+</section>
+
+<section class="rotations">
+  <h2 class="section-title">Afternoon workshops &amp; materials</h2>
+  <p>Each participant attends two rotations; the materials for all four are here for everyone.</p>
+  <div class="rotation-grid">
+    {% for rot in ev.rotations %}
+    <article class="rotation rotation-{{ rot.strand }}">
+      <p class="eyebrow">{{ loop.index }} · {{ rot.strand_obj.name }}{% if rot.room %} · Room {{ rot.room }}{% endif %}</p>
+      <h3>{{ rot.title }}</h3>
+      <p class="small">Led by {{ rot.leader }}</p>
+      {% if rot.description %}<p>{{ rot.description | trim }}</p>{% endif %}
+      {% if rot.resource_objs %}
+      <ul class="res-list">
+        {% for r in rot.resource_objs %}
+        <li><span class="pill pill-{{ r.type }}">{{ r.type_label }}</span> <a href="/resources/{{ r.slug }}/">{{ r.title }}</a></li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="muted small">Materials will be posted here.</p>
+      {% endif %}
+      <p class="small"><a href="/strands/{{ rot.strand }}/">All {{ rot.strand_obj.name }} resources →</a></p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% if ev.speakers %}
+<section>
+  <h2 class="section-title">Speakers</h2>
+  <ul class="speakers">
+    {% for sp in ev.speakers %}<li><strong>{{ sp.name }}</strong><br><span class="small muted">{{ sp.affiliation }}</span></li>{% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% for part in [ev.morning, ev.afternoon] if part %}
+<section>
+  <h2 class="section-title">{{ part.heading }}</h2>
+  <table class="agenda">
+    <tbody>
+    {% for it in part['items'] %}
+    <tr class="{{ 'is-break' if it.kind == 'break' }}">
+      <td class="time">{{ it.time }}</td>
+      <td>
+        <strong>{{ it.title }}</strong>{% if it.who %} <span class="muted">· {{ it.who }}</span>{% endif %}
+        {% if it.description %}<br><span class="small">{{ it.description | trim }}</span>{% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endfor %}
+
+{% if ev.sponsors %}
+<p class="muted small">With thanks to our sponsors: {{ ev.sponsors | join(' · ') }}.</p>
+{% endif %}
+{% endblock %}

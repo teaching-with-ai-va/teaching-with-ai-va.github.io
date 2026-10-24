@@ -1,0 +1,43 @@
+# Virginia Standards of Learning courses this site tags resources against.
+# `prefix` is how VDOE prints the codes in the instructional guides (EC.5, BIO.8, ...).
+# `statements` holds the one-line standard text shown on the crosswalk page; add a line
+# the first time a resource is tagged with a new code. Text is quoted from the VDOE guides.
+
+vdoe_url: https://www.doe.virginia.gov/teaching-learning-assessment/k-12-standards-instruction/science/standards-of-learning
+
+courses:
+  - prefix: LS
+    name: Life Science
+    grade_band: MS
+    guide_file: files/standards/Life_Science_instructional_guide.docx
+  - prefix: BIO
+    name: Biology
+    grade_band: HS
+    guide_file: files/standards/Biology_instructional_guide.docx
+  - prefix: EC
+    name: "Biology II: Ecology"
+    grade_band: HS
+    guide_file: files/standards/Biology_II_Ecology_instructional_guide.docx
+  - prefix: GEN
+    name: "Biology II: Genetics"
+    grade_band: HS
+    guide_file: files/standards/Biology_II_Genetics_instructional_guide.docx
+  - prefix: BIOII
+    name: "Biology II: Advanced Topics"
+    grade_band: HS
+    guide_file: files/standards/Biology_II_Advanced_Topics_instructional_guide.docx
+
+statements:
+  LS.1: The student will demonstrate an understanding of scientific and engineering practices.
+  LS.8: The student will investigate and understand that ecosystems, communities, populations, and organisms are dynamic and change over time.
+  LS.9: The student will investigate and understand that relationships exist between ecosystem dynamics and human activity.
+  BIO.1: The student will demonstrate an understanding of scientific and engineering practices.
+  BIO.5: The student will investigate and understand that there are common mechanisms for inheritance.
+  BIO.8: The student will investigate and understand that there are dynamic equilibria within populations, communities, and ecosystems.
+  EC.1: The student will demonstrate an understanding of scientific and engineering practices.
+  EC.5: The student will investigate and understand that growth within populations is influenced by biotic and abiotic factors.
+  EC.7: The student will investigate and understand that natural and anthropogenic events affect ecosystems.
+  GEN.1: The student will demonstrate an understanding of scientific and engineering practices.
+  GEN.4: The student will investigate and understand that the transmission of heritable information allows for genetic diversity.
+  GEN.5: The student will investigate and understand that the inheritance of traits is more complex than described through Mendelian genetics.
+  BIOII.1: The student will demonstrate an understanding of scientific and engineering practices.

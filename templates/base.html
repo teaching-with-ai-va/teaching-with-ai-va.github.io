@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ site.title }}{% endblock %}</title>
+<meta name="description" content="{% block description %}{{ site.description | trim }}{% endblock %}">
+<link rel="stylesheet" href="/static/style.css">
+<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text"><span class="brand-title">{{ site.title }}</span><span class="brand-sub">{{ site.tagline }}</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="/"{% if nav == 'home' %} aria-current="page"{% endif %}>Home</a>
+      <a href="/prompts/"{% if nav == 'prompts' %} aria-current="page"{% endif %}>Prompts</a>
+      <a href="/standards/"{% if nav == 'standards' %} aria-current="page"{% endif %}>By standard</a>
+      <a href="/workshops/"{% if nav == 'workshops' %} aria-current="page"{% endif %}>Workshops</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+{% block content %}{% endblock %}
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <strong>{{ site.title }}</strong><br>
+      University of Virginia · with thanks to {{ site.sponsors | join(', ') }}.
+    </div>
+    <div class="footer-links">
+      <a href="/facilitators/">For facilitators</a>
+      <a href="https://github.com/teaching-with-ai-va/teaching-with-ai-va.github.io">Source</a>
+      <span class="muted">Built {{ built }}</span>
+    </div>
+  </div>
+</footer>
+{% block scripts %}{% endblock %}
+</body>
+</html>

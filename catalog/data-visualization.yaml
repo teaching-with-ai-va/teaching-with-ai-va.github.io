@@ -1,0 +1,155 @@
+# Data Visualization strand — led by Paul Torrey.
+# The five prompts below are transcribed from the "Data and Visualizations in the Life Sciences" handout.
+
+- slug: data-and-visualizations-life-sciences
+  title: Data and Visualizations in the Life Sciences — workshop handout
+  type: lesson-plan
+  strand: data-visualization
+  url: https://docs.google.com/document/d/1mWcS-vV6SRw99avbKCsP6zdIHAm_MAAXy1TELmRtLNU/edit
+  file: files/data-and-visualizations-in-the-life-sciences.pdf
+  access: view
+  summary: >
+    The complete handout for the Creating and Interpreting Data Visualizations rotation: five
+    short exercises in which you paste one prompt into an AI chat and get an interactive
+    simulator, a cleaned-up textbook figure, or a worksheet with an answer key. Each exercise
+    ends with reflection questions. Also available as a PDF below.
+  sol: [EC.5, BIO.8, LS.8, GEN.4, GEN.5, BIO.5, EC.7, LS.9, LS.1, BIO.1, EC.1, GEN.1]
+  grade_band: both
+  audience: both
+  author: Paul Torrey
+  updated: 2026-10-24
+  start_here: true
+  related: [deer-population-simulator, build-a-prompt-from-the-standard, hemophilia-pedigree-cleanup, keeling-curve-cleanup, chi-square-worksheet]
+
+- slug: deer-population-simulator
+  title: Build a deer population simulator
+  type: prompt
+  strand: data-visualization
+  access: view
+  summary: >
+    One prompt produces a self-contained interactive web page: sliders for growth rate,
+    carrying capacity and starting population, exponential vs. logistic curves, and an optional
+    wolf population for predator–prey cycles. Paste it into any AI chat, download the HTML file
+    it returns, and double-click to open.
+  sol: [EC.5, BIO.8, LS.8]
+  grade_band: both
+  author: Paul Torrey
+  updated: 2026-10-24
+  tips: >
+    After it works, ask the AI for one modification (a different color scheme, more detailed
+    explanations) to see how easy iteration is. Reflection: Did it work? Would a tool like this
+    be useful in your setting? Would you write a prompt like this yourself?
+  related: [data-and-visualizations-life-sciences, build-a-prompt-from-the-standard]
+  prompt_text: |
+    I teach high-school ecology. Build me a single, self-contained HTML page that simulates a deer population over 50 years, for students to use in class.
+
+    What it must do:
+
+    1. Sliders for three deer settings: growth rate per year, carrying capacity (K), and starting population. Show the current value next to each slider.
+
+    2. One graph with years on the horizontal axis and deer on the vertical axis, showing two curves at once: exponential growth (no limit) as a dashed line, and logistic growth (limited by K) as a solid line. Draw the carrying capacity as a labeled dashed horizontal line.
+
+    3. A checkbox labeled "Add wolves." When it is on, add a wolf population that eats deer (predator–prey dynamics), with sliders for starting wolves, hunting success, and wolf death rate. Plot wolves on the same graph using a second axis on the right so both populations are readable.
+
+    4. Under the graph, a short readout: deer at year 50 under each model, the year the herd first reaches 90% of K, and two or three plain sentences explaining what the current settings show.
+
+    5. Everything redraws instantly as sliders move. Include a "Reset to defaults" button.
+
+    Choose default values so that, with wolves on, the two populations visibly cycle. Keep the page clean and readable on a classroom projector, with large labels. Use no external libraries; draw the graph yourself with SVG. At the end, tell me briefly which equations you used.
+
+- slug: build-a-prompt-from-the-standard
+  title: Have the AI write the prompt for you (from a VDOE standard)
+  type: prompt
+  strand: data-visualization
+  access: view
+  summary: >
+    You probably would not have written the deer-simulator prompt yourself, and you don't have
+    to. Upload a VDOE instructional guide, point the AI at one standard, and ask it to write the
+    prompt. Works for any standard in any course.
+  sol: [EC.5, EC.1]
+  grade_band: both
+  author: Paul Torrey
+  updated: 2026-10-24
+  tips: >
+    Download the Biology II: Ecology instructional guide (ideally as a PDF) and upload it to a
+    fresh chat before pasting the prompt. Swap "EC.5" and the topic description for any standard
+    you teach. Reflection: Did it work? Would you write a prompt like this? How might you adopt
+    this for your own teaching domain?
+  related: [deer-population-simulator, data-and-visualizations-life-sciences]
+  prompt_text: |
+    I've attached an instructional guide to this chat. Look at standard EC.5, about population growth, carrying capacity, and limiting factors. Students find this hard because the textbook shows one finished graph, and they can't see what happens when the growth rate, carrying capacity, or a predator changes. Write me a prompt I can paste into a new chat that will produce a simple interactive web page (i.e. an HTML file) that students can use to explore this. The page should have sliders and a graph, need no files or programming on my part, and work on the first try. Please try to keep the prompt brief; I don't want to be overwhelmed checking it.
+
+- slug: hemophilia-pedigree-cleanup
+  title: Clean up a messy figure — the hemophilia pedigree
+  type: prompt
+  strand: data-visualization
+  access: view
+  summary: >
+    The pedigree of hemophilia among Queen Victoria's descendants is the standard textbook example
+    of X-linked inheritance and nearly unreadable. Upload the figure and have the AI redraw just
+    the one branch that shows the rule, with genotypes and standard symbols.
+  sol: [GEN.5, BIO.5]
+  grade_band: HS
+  author: Paul Torrey
+  updated: 2026-10-24
+  tips: >
+    Get the family-tree image from the Wikipedia article "Haemophilia in European royalty"
+    (right-click, save image); any textbook version works too. Upload it to a fresh chat first.
+    Reflection: Can you verify the new visualization is legitimate based on the original? What
+    steps must you take before using a modified visualization in class?
+  related: [data-and-visualizations-life-sciences, keeling-curve-cleanup]
+  prompt_text: |
+    I've attached the pedigree of hemophilia in Queen Victoria's descendants. My high-school students can't see the inheritance rule in it. Pick one branch that shows X-linked recessive inheritance most clearly: a carrier mother, at least one affected son, and at least one unaffected son, across three generations. Redraw just that branch as a clean pedigree with standard symbols (squares for males, circles for females, filled for affected, half-filled for carriers), write the genotype under each person using X^H and X^h, and add one sentence under the diagram stating the rule the branch demonstrates. Tell me which people you chose and why. Critically: do not "generate" an image, but instead use code to create your result so that it is reproducible and modifiable.
+
+- slug: keeling-curve-cleanup
+  title: Clean up a messy plot — CO₂ at Mauna Loa (the Keeling curve)
+  type: prompt
+  strand: data-visualization
+  access: view
+  summary: >
+    The NOAA Mauna Loa CO₂ record mixes a 65-year rise with a yearly seasonal wiggle, and
+    students can't tell which part matters. One prompt, pointed at the real NOAA data file,
+    separates the two patterns into clean charts.
+  sol: [EC.7, LS.9]
+  grade_band: both
+  author: Paul Torrey
+  updated: 2026-10-24
+  tips: >
+    Uses real data from NOAA (https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv);
+    you don't need to download it, just reference the URL as the prompt does. Reflection: Can
+    you trust these new plots? What must you check before using them in class?
+  related: [data-and-visualizations-life-sciences, hemophilia-pedigree-cleanup]
+  prompt_text: |
+    The data from NOAA's monthly CO₂ data from Mauna Loa can be found here: https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv
+
+    The usual plot of this file confuses my high-school students because two different patterns are mixed together. Make me three clean, separate charts: (1) the normal plot that shows the data as a function of time, (2) the normal plot, but now showing data as a function of time with the month of the year shown with a smoothly varying color scheme where winter months are more blue, and hot months are more red, (3) the seasonal cycle, month by month, for all years with labels saying what plants in the Northern Hemisphere are doing in spring, summer, and fall, and (4) just the long-term rise since 1958, with the yearly wiggle removed. Tell me which columns of the file you used.
+
+- slug: chi-square-worksheet
+  title: Generate an interpretation worksheet — chi-square on a dihybrid cross
+  type: prompt
+  strand: data-visualization
+  access: view
+  summary: >
+    The previous exercises made visualizations; this one makes the questions. One prompt produces
+    a printable one-page worksheet (data table, bar chart, six graded questions) plus a separate
+    answer key with worked arithmetic and common mistakes, as an editable Word file.
+  sol: [GEN.4, BIO.5, GEN.1, BIO.1]
+  grade_band: HS
+  author: Paul Torrey
+  updated: 2026-10-24
+  tips: >
+    No files needed; open a fresh chat. Then try the follow-ups: "Now make a second version of
+    the data where the chi-square test fails, so students can see what a bad fit looks like."
+    "Now make another version with deeper annotations of what is required at each step so that
+    students struggling with this concept have a better chance of successfully working through
+    the problem with guidance." "Now make another version with increased difficulty so that I
+    can challenge students who found the original version straightforward."
+  related: [data-and-visualizations-life-sciences]
+  prompt_text: |
+    I teach high-school genetics. Make me a one-page worksheet on chi-square analysis of a genetic cross.
+
+    Use a dihybrid corn cross (purple/yellow kernel color, smooth/wrinkled texture) and invent a realistic set of observed counts for about 400 kernels that is close to a 9:3:3:1 ratio but not exactly. Give students: (1) the observed counts in a table with the expected column blank, (2) a bar chart comparing observed and expected for the four phenotypes, and (3) six questions that build from easy to hard: read a value from the chart, calculate expected counts, calculate chi-square, find degrees of freedom, compare to the critical value at p = 0.05, and finally write one sentence stating whether the data support independent assortment and what it would mean if they did not.
+
+    Then give me a separate answer key with the worked arithmetic and a short list of the three mistakes students most often make on this topic. Keep the student page clean enough to print.
+
+    Ensure any documents you give me are editable in Microsoft Word format.

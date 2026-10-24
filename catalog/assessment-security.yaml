@@ -1,0 +1,96 @@
+# Assessment Security strand — led by Matthew Pryal.
+# One card per resource. Required: slug, title, type, strand, access (+ url or file, or prompt_text for prompts).
+# NOTE: these links currently point at a personal UVA OneDrive. Move them to the Shared Drive
+# and update `url` here; nothing else on the site needs to change.
+
+- slug: assessment-security-slides
+  title: Workshop slides — Ensuring Learning in the Age of AI
+  type: slides
+  strand: assessment-security
+  url: https://docs.google.com/presentation/d/1fYs3pOcIeT1v3ZCq0Nba7MJAbhLvvTXjf6EfNF_sISU/edit?usp=sharing
+  access: view
+  summary: The slide deck from the afternoon workshop on designing more secure assessments.
+  grade_band: both
+  audience: both
+  author: Matthew Pryal
+  updated: 2026-10-24
+  start_here: true
+  related: [assessment-security-worksheet, assessment-security-resource-guide]
+
+- slug: assessment-security-worksheet
+  title: Assessment Security Workshop — Worksheet
+  type: worksheet
+  strand: assessment-security
+  url: https://myuva-my.sharepoint.com/:w:/g/personal/mp5qe_virginia_edu/IQCxuKdCDGHGT7Otuoo2vVHvAV7VczbdCScElefalMVeTWU?e=lP3vhz
+  access: view
+  summary: The participant worksheet used during the workshop rotation.
+  grade_band: both
+  author: Matthew Pryal
+  updated: 2026-10-24
+  start_here: true
+  related: [assessment-security-slides]
+
+- slug: assessment-security-resource-guide
+  title: Assessment Security and AI Resource Guide
+  type: guide
+  strand: assessment-security
+  url: https://myuva-my.sharepoint.com/:w:/g/personal/mp5qe_virginia_edu/IQBwb0BsJgpVQpJfshFEnohaAdVKe8_WgPVAsx_QPqFlEqw?e=ClTd8j
+  access: view
+  summary: >
+    A practical, evidence-informed resource for preserving flexible take-home assessment
+    while protecting authorship and learning.
+  grade_band: both
+  author: Matthew Pryal
+  updated: 2026-10-24
+  start_here: true
+  related: [improving-assessment-age-of-ai, brief-oral-verification, version-history-for-assessment-security, lms-and-file-metadata]
+
+- slug: improving-assessment-age-of-ai
+  title: Improving Assessment in the Age of AI
+  type: guide
+  strand: assessment-security
+  url: https://myuva-my.sharepoint.com/:w:/g/personal/mp5qe_virginia_edu/IQA1LvIWoAaVQp8CPXoAjJwEAc8jHW-4uLhK-GAKWHKVrVc?e=aAAeHo
+  access: view
+  summary: >
+    A faculty guide to better assessment design, clearer instructions, stronger learning
+    evidence, and appropriate AI boundaries.
+  grade_band: both
+  author: Matthew Pryal
+  updated: 2026-10-24
+  related: [assessment-security-resource-guide]
+
+- slug: brief-oral-verification
+  title: Brief Oral Verification for Assessment Security
+  type: guide
+  strand: assessment-security
+  url: https://myuva-my.sharepoint.com/:w:/g/personal/mp5qe_virginia_edu/IQD4tT_fw4cfQ5NdFYmDIxn_AU6zBFdDX9VYhH7JULGg4DE?e=cma6MY
+  access: view
+  summary: Using short oral check-ins to verify authorship of take-home work.
+  grade_band: both
+  author: Matthew Pryal
+  updated: 2026-10-24
+  related: [assessment-security-resource-guide]
+
+- slug: version-history-for-assessment-security
+  title: Using Version History for Assessment Security
+  type: guide
+  strand: assessment-security
+  url: https://myuva-my.sharepoint.com/:w:/g/personal/mp5qe_virginia_edu/IQDd8BzXyfQ_Q5WEjKOMHTjMAWPeinZCtOAiNg8nWb4MWkk?e=p1Sm2K
+  access: view
+  summary: Using document version history (Google Docs, Word) as evidence of a student's writing process.
+  grade_band: both
+  author: Matthew Pryal
+  updated: 2026-10-24
+  related: [assessment-security-resource-guide]
+
+- slug: lms-and-file-metadata
+  title: LMS and File Metadata for Assessment Security
+  type: guide
+  strand: assessment-security
+  url: https://myuva-my.sharepoint.com/:w:/g/personal/mp5qe_virginia_edu/IQDTYxxXHrkWSasr_V7V6z8PAb3RKlKYWXXQv-JhKiY0PRw?e=8g3d8y
+  access: view
+  summary: What learning-management-system logs and file metadata can and cannot tell you about authorship.
+  grade_band: both
+  author: Matthew Pryal
+  updated: 2026-10-24
+  related: [assessment-security-resource-guide]

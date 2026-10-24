@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% set nav = 'workshops' %}
+{% block title %}Workshops · {{ site.title }}{% endblock %}
+{% block content %}
+<section class="page-head">
+  <h1>Workshops</h1>
+  <p class="lede">Every workshop in the series, newest first. Each page has the agenda, speakers, and the materials used in each rotation.</p>
+</section>
+<div class="cards">
+  {% for ev in events %}
+  <article class="card">
+    <p class="eyebrow">{{ ev.date_label }}</p>
+    <h3 class="card-title"><a href="/workshops/{{ ev.slug }}/">{{ ev.title }}</a></h3>
+    <p class="card-summary">{{ ev.subtitle }}{% if ev.venue %}<br><span class="muted small">{{ ev.venue }}</span>{% endif %}</p>
+    <p class="small">{% for rot in ev.rotations %}<a href="/strands/{{ rot.strand }}/">{{ rot.strand_obj.name }}</a>{{ ' · ' if not loop.last }}{% endfor %}</p>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}
