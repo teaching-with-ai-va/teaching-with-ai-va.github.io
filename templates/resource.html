@@ -22,11 +22,32 @@
   </section>
   {% else %}
   <p class="actions">
-    {% if r.url %}<a class="button" href="{{ r.url }}" target="_blank" rel="noopener">{{ r.access_label }} ↗</a>{% endif %}
-    {% if r.file %}<a class="button ghost" href="/{{ r.file }}">Download PDF</a>{% endif %}
+    {% if r.file and (not r.url or r.archive.original_here) %}
+      <a class="button" href="{{ r.file_href }}">Download {{ r.file_ext }}</a>
+      {% if r.url %}<a class="button ghost" href="{{ r.url }}" target="_blank" rel="noopener">{{ r.access_label }} ↗</a>{% endif %}
+    {% else %}
+      {% if r.url %}<a class="button" href="{{ r.url }}" target="_blank" rel="noopener">{{ r.access_label }} ↗</a>{% endif %}
+      {% if r.file %}<a class="button ghost" href="{{ r.file_href }}">Archived copy ({{ r.file_ext }})</a>{% endif %}
+    {% endif %}
     <span class="muted small">{{ r.access_hint }}</span>
   </p>
   {% if r.tips %}<p>{{ r.tips | trim }}</p>{% endif %}
+  {% endif %}
+
+  {% if r.archive %}
+  <aside class="provenance">
+    <p class="eyebrow">Archived copy</p>
+    <p class="small">
+      {% if r.archive.original_here %}
+        This file was produced for the workshop and this site is its home.
+      {% else %}
+        A copy of this document is kept on this site so the link keeps working. Copied {{ r.archive.cloned }}{% if r.archive.source_url %} from the <a href="{{ r.archive.source_url }}" target="_blank" rel="noopener">original</a>{% endif %}, which remains the canonical version.
+      {% endif %}
+      {% if r.archive.permission %}Shared under: {{ r.archive.permission }}.{% endif %}
+      {% if r.archive.note %}{{ r.archive.note }}{% endif %}
+      See <a href="/attribution/">Sources &amp; attribution</a>.
+    </p>
+  </aside>
   {% endif %}
 
   <dl class="facts">

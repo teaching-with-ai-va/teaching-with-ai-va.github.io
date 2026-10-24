@@ -7,6 +7,10 @@
   strand: data-visualization
   url: https://docs.google.com/document/d/1mWcS-vV6SRw99avbKCsP6zdIHAm_MAAXy1TELmRtLNU/edit
   file: files/data-and-visualizations-in-the-life-sciences.pdf
+  archive:
+    cloned: 2026-10-23
+    original_here: true      # written for the workshop; the Google Doc is the editable working copy
+    permission: Written by Paul Torrey for the workshop; free to use and adapt with attribution
   access: view
   summary: >
     The complete handout for the Creating and Interpreting Data Visualizations rotation: five

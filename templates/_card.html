@@ -9,8 +9,11 @@
   <div class="card-foot">
     {% if r.type == 'prompt' %}
       <a class="button small" href="/resources/{{ r.slug }}/">Open prompt</a>
-    {% elif r.href %}
-      <a class="button small" href="{{ r.href }}" target="_blank" rel="noopener" title="{{ r.access_hint }}">{{ r.access_label }} ↗</a>
+    {% elif r.file and (not r.url or r.archive.original_here) %}
+      <a class="button small" href="{{ r.file_href }}">Download {{ r.file_ext }}</a>
+    {% elif r.url %}
+      <a class="button small" href="{{ r.url }}" target="_blank" rel="noopener" title="{{ r.access_hint }}">{{ r.access_label }} ↗</a>
+      {% if r.file %}<a class="small" href="{{ r.file_href }}" title="Copy kept on this site, cloned {{ r.archive.cloned }}">archived copy</a>{% endif %}
     {% endif %}
     {% if r.sol %}
       <span class="sol-list">{% for s in r.sol %}<a class="sol" href="/standards/#{{ s }}">{{ s }}</a>{% endfor %}</span>

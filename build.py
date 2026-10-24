@@ -129,6 +129,16 @@ def validate(site, standards, catalog, events):
             errors.append(f"{where}: make-a-copy links must end in /copy")
         if row.get("file") and not (ROOT / row["file"]).exists():
             errors.append(f"{where}: file not found: {row['file']}")
+        # Any file hosted here must say where it came from and on what terms.
+        if row.get("file"):
+            arc = row.get("archive") or {}
+            for field in ("cloned", "permission"):
+                if not arc.get(field):
+                    errors.append(f"{where}: a hosted file needs archive.{field} (see HOW-TO: Archiving a copy)")
+            if arc.get("cloned") and not re.match(r"^\d{4}-\d{2}-\d{2}$", str(arc["cloned"])):
+                errors.append(f"{where}: archive.cloned must be a YYYY-MM-DD date")
+            if not arc.get("source_url") and not row.get("url") and not arc.get("original_here"):
+                errors.append(f"{where}: archive needs source_url (or original_here: true if this repo is the original)")
         for code in row.get("sol", []) or []:
             if not code_re.match(str(code)):
                 errors.append(f"{where}: SOL code '{code}' does not match a known course prefix")
@@ -176,6 +186,19 @@ def enrich(site, standards, catalog, events):
         r["grade_label"] = GRADE_BANDS.get(r.get("grade_band"), "")
         r["strand_obj"] = strands.get(r["strand"], {"slug": "general", "name": "General"})
         r["href"] = r.get("url") or (f"/{r['file']}" if r.get("file") else None)
+        r["file_href"] = f"/{r['file']}" if r.get("file") else None
+        r["file_ext"] = Path(r["file"]).suffix.lstrip(".").upper() if r.get("file") else ""
+        arc = r.get("archive") or {}
+        if r.get("file"):
+            r["archive"] = {
+                "source_url": arc.get("source_url") or (None if arc.get("original_here") else r.get("url")),
+                "cloned": str(arc.get("cloned", "")),
+                "permission": arc.get("permission", ""),
+                "note": arc.get("note", ""),
+                "original_here": bool(arc.get("original_here")),
+            }
+        else:
+            r["archive"] = None
         r["used_in"] = []
         r["related_objs"] = [by_slug[s] for s in r["related"] if s in by_slug]
         r["sol_objs"] = []
@@ -224,7 +247,27 @@ def enrich(site, standards, catalog, events):
         crosswalk.append({"course": c, "rows": rows})
 
     prompts = [r for r in catalog if r["type"] == "prompt" and r["audience"] != "facilitator"]
-    return {"by_slug": by_slug, "crosswalk": crosswalk, "prompts": prompts}
+
+    # Attribution register: every file hosted on this site, with its provenance.
+    archived = []
+    for r in catalog:
+        if r["archive"]:
+            archived.append({"title": r["title"], "href": r["file_href"], "ext": r["file_ext"], "page": f"/resources/{r['slug']}/",
+                             "author": r.get("author", ""), **r["archive"]})
+    for c in standards["courses"]:
+        if c.get("guide_file"):
+            arc = c.get("archive") or {}
+            archived.append({"title": f"{c['name']} instructional guide", "href": f"/{c['guide_file']}", "ext": Path(c["guide_file"]).suffix.lstrip(".").upper(),
+                             "page": "/standards/", "author": "Virginia Department of Education",
+                             "source_url": arc.get("source_url") or standards.get("vdoe_url"), "cloned": str(arc.get("cloned", "")),
+                             "permission": arc.get("permission", ""), "note": arc.get("note", ""), "original_here": False})
+    for ev in events:
+        if ev.get("agenda_file"):
+            archived.append({"title": f"Agenda, {ev['date_label']}", "href": f"/{ev['agenda_file']}", "ext": Path(ev["agenda_file"]).suffix.lstrip(".").upper(),
+                             "page": f"/workshops/{ev['slug']}/", "author": "Workshop organizers", "source_url": None,
+                             "cloned": str(ev.get("date", "")), "permission": "Produced by the workshop team", "note": "", "original_here": True})
+    archived.sort(key=lambda a: a["title"].lower())
+    return {"by_slug": by_slug, "crosswalk": crosswalk, "prompts": prompts, "archived": archived}
 
 
 def render_markdown_file(path: Path) -> str:
@@ -277,6 +320,7 @@ def build(out: Path, check_only: bool = False):
         write(f"resources/{r['slug']}/index.html", "resource.html", r=r)
     write("prompts/index.html", "prompts.html")
     write("standards/index.html", "standards.html")
+    write("attribution/index.html", "attribution.html")
     write("workshops/index.html", "workshops.html")
     for ev in events:
         write(f"workshops/{ev['slug']}/index.html", "event.html", ev=ev)

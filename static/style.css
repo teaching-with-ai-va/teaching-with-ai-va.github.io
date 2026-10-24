@@ -173,6 +173,13 @@ ul.plain-list li { margin: 0 0 .45em; }
 .prompt-head h2 { margin: 0; font-size: 1.15rem; }
 .prompt-text { margin: 0 0 .9rem; padding: 1.1rem 1.2rem; background: var(--bg); border-radius: 8px; border: 1px solid var(--line); color: var(--ink); }
 
+.provenance { margin: 1.5rem 0; padding: 1rem 1.3rem; border-left: 2px solid var(--line-2); background: var(--bg-2); border-radius: 0 8px 8px 0; }
+.provenance p { margin: 0; color: var(--ink-dim); }
+.provenance .eyebrow { margin-bottom: .3rem; }
+.attribution td.mono { font-family: var(--mono); font-size: .8rem; white-space: nowrap; color: var(--ink-dim); }
+.attribution td { color: var(--ink-dim); }
+.attribution td a { color: var(--ink); }
+
 /* Prompt library */
 .filters { margin: 0 0 1.4rem; }
 .prompt-list { display: grid; gap: 1rem; }

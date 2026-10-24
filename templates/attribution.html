@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Sources &amp; attribution · {{ site.title }}{% endblock %}
+{% block content %}
+<section class="page-head">
+  <p class="eyebrow">Provenance</p>
+  <h1>Sources &amp; <em>attribution</em></h1>
+  <p class="lede">Every file hosted on this site is listed here with where it came from, when the copy was made, and the terms under which it is shared. We keep copies so the links on a printed agenda still work years later; the original authors keep the credit and the canonical version.</p>
+</section>
+
+<table class="attribution">
+  <thead><tr><th>File</th><th>Author</th><th>Original source</th><th>Copied</th><th>Permission</th></tr></thead>
+  <tbody>
+  {% for a in archived %}
+  <tr>
+    <td><a href="{{ a.page }}">{{ a.title }}</a><br><a class="small" href="{{ a.href }}">Download {{ a.ext }}</a></td>
+    <td>{{ a.author }}</td>
+    <td>{% if a.original_here %}<span class="muted">Produced for this site</span>{% elif a.source_url %}<a href="{{ a.source_url }}" target="_blank" rel="noopener">Original ↗</a>{% else %}<span class="muted">—</span>{% endif %}</td>
+    <td class="mono">{{ a.cloned }}</td>
+    <td class="small">{{ a.permission }}{% if a.note %}<br><span class="muted">{{ a.note }}</span>{% endif %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<p class="small muted" style="margin-top:1.5rem">Found something attributed incorrectly, or want a file removed? Contact the organizers via the <a href="/facilitators/">facilitator page</a>.</p>
+{% endblock %}

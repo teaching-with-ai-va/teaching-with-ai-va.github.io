@@ -5,27 +5,37 @@
 
 vdoe_url: https://www.doe.virginia.gov/teaching-learning-assessment/k-12-standards-instruction/science/standards-of-learning
 
+# The instructional guides are mirrored under files/standards/ so the crosswalk keeps working if
+# VDOE reorganizes its site. `archive` records where and when each copy was taken.
 courses:
   - prefix: LS
     name: Life Science
     grade_band: MS
     guide_file: files/standards/Life_Science_instructional_guide.docx
+    archive: &vdoe
+      source_url: https://www.doe.virginia.gov/teaching-learning-assessment/k-12-standards-instruction/science/standards-of-learning
+      cloned: 2026-10-23
+      permission: Public document of the Virginia Department of Education (2023 Science Standards of Learning instructional guide); mirrored unchanged for reference
   - prefix: BIO
     name: Biology
     grade_band: HS
     guide_file: files/standards/Biology_instructional_guide.docx
+    archive: *vdoe
   - prefix: EC
     name: "Biology II: Ecology"
     grade_band: HS
     guide_file: files/standards/Biology_II_Ecology_instructional_guide.docx
+    archive: *vdoe
   - prefix: GEN
     name: "Biology II: Genetics"
     grade_band: HS
     guide_file: files/standards/Biology_II_Genetics_instructional_guide.docx
+    archive: *vdoe
   - prefix: BIOII
     name: "Biology II: Advanced Topics"
     grade_band: HS
     guide_file: files/standards/Biology_II_Advanced_Topics_instructional_guide.docx
+    archive: *vdoe
 
 statements:
   LS.1: The student will demonstrate an understanding of scientific and engineering practices.
